@@ -12,10 +12,10 @@ public class TempActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temp);
-        long longExtra =  getIntent().getLongExtra(CountService.TIME, 0);
+        //long longExtra =  getIntent().getLongExtra(CountService.TIME, 0);
 
         TextView tvTime =  findViewById(R.id.tv_time);
-        tvTime.setText( "Time is " +  longExtra);
+        //tvTime.setText( "Time is " +  longExtra);
         /*
         Text ViewTime setTextLongExtra, Timeis. Проверим еще раз, что мы сделали.
         В CountService мы передаем в Intent, который мы передаем Broadcast, которым передаем Broadcastо Receiver,
@@ -25,5 +25,10 @@ public class TempActivity extends AppCompatActivity {
         переключились на новые Activity. Receiver больше не работает, потому что он остался в старом Activity.
          */
 
+        String stringExtra =  getIntent().getStringExtra(CountService.TIME);
+        tvTime.setText("this is from notification" + stringExtra);
+        /*
+        Start Service, увидели notification, кликнули по notification, попали в TempActivity.
+         */
     }
 }
