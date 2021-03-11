@@ -1,13 +1,18 @@
 package com.kmn.servicereceivernotification;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CountService.class);
                 startService(intent);
+
             }
         });
 
@@ -51,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mSimpleReceiver = new SimpleReceiver();
+        mSimpleReceiver = new SimpleReceiver((TextView) findViewById(R.id.tv_time));
         mIntentFilter = new IntentFilter(SimpleReceiver.SIMPLE_ACTION);
         /*
         Соответственно, переходим в MainActivity, new Intent, и в качестве action'а передаём этот
